@@ -15,10 +15,12 @@ func Generate(oripath string, wg *sync.WaitGroup) {
 		go func(file string) {
 			hash, err := GetFileSha256(file)
 			if err != nil {
+				wg.Done()
 				return
 			}
 			err = CreateHashFile(file, hash)
 			if err != nil {
+				wg.Done()
 				return
 			}
 			wg.Done()
@@ -56,6 +58,7 @@ func Verify(oripath string, wg *sync.WaitGroup, isError *bool) {
 		go func(orifile string) {
 			result, err := VerifyHashFile(orifile)
 			if err != nil {
+				wg.Done()
 				return
 			}
 			if result {
