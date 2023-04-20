@@ -48,7 +48,7 @@ func main() {
 					&cli.StringFlag{
 						Name:        "remove",
 						Aliases:     []string{"r"},
-						Usage:       "specify path",
+						Usage:       "remove .fs256 file after verify",
 						Value:       "false",
 						DefaultText: "false",
 					},
